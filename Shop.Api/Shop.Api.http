@@ -1,0 +1,43 @@
+@Shop.Api_HostAddress = http://localhost:5138
+
+GET {{Shop.Api_HostAddress}}/openapi/v1.json
+Accept: application/json
+
+###
+//admin
+GET {{Shop.Api_HostAddress}}/api/categories/1
+Accept: application/json
+
+###
+//client
+GET {{Shop.Api_HostAddress}}/api/categories/active
+Accept: application/json
+
+###
+
+POST {{Shop.Api_HostAddress}}/api/categories
+Content-Type: application/json
+
+{
+    "name": "electronics123",
+    "code": "electronics123",
+    "description": "Electronics and gadgets",
+    "isActive": true
+}
+
+###
+PUT {{Shop.Api_HostAddress}}/api/categories/1
+Content-Type: application/json
+
+{
+    "name": "Electronics",
+    "code": "electronics",
+    "description": "Electronics and gadgets",
+    "isActive": true,
+    "imageUrl": null,
+    "parentCategoryId": null
+}
+
+###
+
+DELETE {{Shop.Api_HostAddress}}/api/categories/1
