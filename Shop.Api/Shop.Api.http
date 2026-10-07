@@ -41,3 +41,48 @@ Content-Type: application/json
 ###
 
 DELETE {{Shop.Api_HostAddress}}/api/categories/1
+
+###
+
+GET {{Shop.Api_HostAddress}}/api/products
+Accept: application/json
+
+###
+POST {{Shop.Api_HostAddress}}/api/products
+Content-Type: application/json
+
+{
+    "name": "iPhone 17",
+    "code": "iphone-17",
+    "description": "New iPhone",
+    "price": 999,
+    "stockQuantity": 10,
+    "isActive": true,
+    "imageUrl": null,
+    "categoryId": 1
+}
+
+###
+
+GET {{Shop.Api_HostAddress}}/api/products/1
+Accept: application/json
+
+###
+
+PUT {{Shop.Api_HostAddress}}/api/products/1
+Content-Type: application/json
+
+{
+  "name": "iPhone 17",
+  "code": "iphone-17",
+  "description": "Updated iPhone",
+  "categoryId": 1,
+  "price": 899,
+  "isActive": true,
+  "stockQuantity": 7,
+  "imageUrl": null
+}
+
+###
+
+DELETE {{Shop.Api_HostAddress}}/api/products/1
