@@ -7,40 +7,54 @@ namespace Shop.Api.Controllers;
 [ApiController]
 [Route("api/[controller]")]
 
-public class ProductsController : ControllerBase {
+public class ProductsController : ControllerBase
+{
     private readonly AppDbContext _context;
 
-    public ProductsController(AppDbContext context) {
+    public ProductsController(AppDbContext context)
+    {
         _context = context;
     }
 
-    //admin
-    [HttpGet]
-    public List<Product> GetProducts() {
+    [HttpGet("admin")]
+    public List<Product> GetAllProducts()
+    {
         return _context.Products.ToList();
     }
 
     //client
+    [HttpGet]
+    public List<Product> GetActiveProducts()
+    {
+        return _context.Products.Where(product => product.IsActive == true).ToList();
+    }
+
+    //client
     [HttpGet("{id}")]
-    public ActionResult<Product> GetProduct(int id) {
+    public ActionResult<Product> GetProduct(int id)
+    {
         var product = _context.Products.Find(id);
-        if (product == null) {
+        if (product == null)
+        {
             return NotFound();
         }
         return product;
     }
 
     [HttpPost]
-    public Product AddProduct(Product product) {
+    public Product AddProduct(Product product)
+    {
         _context.Products.Add(product);
         _context.SaveChanges();
         return product;
     }
 
     [HttpPut("{id}")]
-    public ActionResult<Product> UpdateProduct(int id, Product product) {
+    public ActionResult<Product> UpdateProduct(int id, Product product)
+    {
         var existingProduct = _context.Products.Find(id);
-        if (existingProduct == null) {
+        if (existingProduct == null)
+        {
             return NotFound();
         }
         existingProduct.Name = product.Name;
@@ -56,9 +70,11 @@ public class ProductsController : ControllerBase {
     }
 
     [HttpDelete("{id}")]
-    public ActionResult<Product> DeleteProduct(int id) {
+    public ActionResult<Product> DeleteProduct(int id)
+    {
         var product = _context.Products.Find(id);
-        if (product == null) {
+        if (product == null)
+        {
             return NotFound();
         }
         product.IsActive = false;
