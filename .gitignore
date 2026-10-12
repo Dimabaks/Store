@@ -15,3 +15,7 @@ obj/
 # Environment files
 .env
 .env.*
+
+# Node.js / React
+node_modules/
+dist/

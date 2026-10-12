@@ -16,6 +16,7 @@ public class ProductsController : ControllerBase
         _context = context;
     }
 
+    //admin
     [HttpGet("admin")]
     public List<Product> GetAllProducts()
     {
